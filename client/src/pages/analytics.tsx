@@ -5,30 +5,38 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { BarChart3, TrendingUp, Package, Clock, DollarSign, Activity } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import type { Product, DetailCommande, ProductWithAnalytics } from "@shared/schema";
 
 export default function Analytics() {
   const [selectedProduct, setSelectedProduct] = useState<string>("");
   const [timeFrame, setTimeFrame] = useState<string>("30");
 
   // Fetch general statistics
-  const { data: stats, isLoading: statsLoading } = useQuery({
+  const { data: stats, isLoading: statsLoading } = useQuery<{
+    totalProducts: number;
+    scansToday: number;
+    lastUpdate: string;
+  }>({
     queryKey: ['/api/stats'],
     refetchInterval: 60000,
   });
 
   // Fetch products for selection
-  const { data: productsData } = useQuery({
+  const { data: productsData } = useQuery<{
+    products: Product[];
+    total: number;
+  }>({
     queryKey: ['/api/products', { limit: 100 }],
   });
 
   // Fetch product analytics if a product is selected
-  const { data: productAnalytics, isLoading: analyticsLoading } = useQuery({
+  const { data: productAnalytics, isLoading: analyticsLoading } = useQuery<ProductWithAnalytics>({
     queryKey: ['/api/products', selectedProduct, 'analytics'],
     enabled: !!selectedProduct,
   });
 
   // Fetch price history if a product is selected
-  const { data: priceHistory, isLoading: historyLoading } = useQuery({
+  const { data: priceHistory, isLoading: historyLoading } = useQuery<DetailCommande[]>({
     queryKey: ['/api/products', selectedProduct, 'price-history'],
     enabled: !!selectedProduct,
   });
@@ -53,7 +61,7 @@ export default function Analytics() {
             <SelectValue placeholder="Select a product..." />
           </SelectTrigger>
           <SelectContent>
-            {products.map((product: any) => (
+            {products.map((product: Product) => (
               <SelectItem key={product.id} value={product.id}>
                 {product.designation}
               </SelectItem>
@@ -229,10 +237,10 @@ export default function Analytics() {
           </CardHeader>
           <CardContent>
             <div className="space-y-2 max-h-64 overflow-y-auto">
-              {priceHistory.slice(0, 10).map((entry: any, index: number) => (
+              {priceHistory.slice(0, 10).map((entry: DetailCommande, index: number) => (
                 <div key={entry.id} className="flex justify-between items-center p-2 border-b border-gray-100 dark:border-gray-800">
                   <span className="text-sm text-gray-600 dark:text-gray-400" data-testid={`history-date-${index}`}>
-                    {new Date(entry.commandeDate).toLocaleDateString()}
+                    {entry.commandeDate ? new Date(entry.commandeDate).toLocaleDateString() : 'N/A'}
                   </span>
                   <span className="font-medium" data-testid={`history-price-${index}`}>
                     ${parseFloat(entry.price).toFixed(2)}

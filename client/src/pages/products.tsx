@@ -16,7 +16,10 @@ export default function Products() {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error } = useQuery<{
+    products: Product[];
+    total: number;
+  }>({
     queryKey: ['/api/products', { 
       search: searchQuery || undefined, 
       category: category !== "All Categories" ? category : undefined,

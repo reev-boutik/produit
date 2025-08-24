@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Package, TrendingUp, Clock, AlertCircle } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { ProductWithAnalytics } from "@shared/schema";
+import type { ProductWithAnalytics, Product } from "@shared/schema";
 
 export default function Scanner() {
   const [scannedBarcode, setScannedBarcode] = useState<string | null>(null);
@@ -17,7 +17,7 @@ export default function Scanner() {
     isLoading: isLoadingProduct, 
     error: productError,
     refetch: refetchProduct 
-  } = useQuery({
+  } = useQuery<Product>({
     queryKey: ['/api/products/barcode', scannedBarcode],
     enabled: !!scannedBarcode,
   });
@@ -26,13 +26,17 @@ export default function Scanner() {
   const { 
     data: analytics, 
     isLoading: isLoadingAnalytics 
-  } = useQuery({
+  } = useQuery<ProductWithAnalytics>({
     queryKey: ['/api/products', product?.id, 'analytics'],
     enabled: !!product?.id,
   });
 
   // Fetch general statistics
-  const { data: stats } = useQuery({
+  const { data: stats } = useQuery<{
+    totalProducts: number;
+    scansToday: number;
+    lastUpdate: string;
+  }>({
     queryKey: ['/api/stats'],
     refetchInterval: 60000, // Refresh every minute
   });
@@ -43,7 +47,13 @@ export default function Scanner() {
   };
 
   const isLoading = isLoadingProduct || isLoadingAnalytics;
-  const productWithAnalytics: ProductWithAnalytics | undefined = analytics || product;
+  const productWithAnalytics: ProductWithAnalytics | undefined = analytics || (product ? {
+    ...product,
+    minPrice: product.currentPrice,
+    maxPrice: product.currentPrice, 
+    avgPrice: product.currentPrice,
+    scansCount: 0
+  } : undefined);
 
   return (
     <main className="container mx-auto px-4 py-6 max-w-6xl pb-24 md:pb-6">
@@ -65,7 +75,7 @@ export default function Scanner() {
                   <span className="font-medium">Total Products</span>
                 </div>
                 <span className="text-xl font-bold text-material-blue" data-testid="text-total-products">
-                  {stats?.totalProducts?.toLocaleString() || '...'}
+                  {stats?.totalProducts?.toLocaleString() || '0'}
                 </span>
               </div>
 
@@ -75,7 +85,7 @@ export default function Scanner() {
                   <span className="font-medium">Scans Today</span>
                 </div>
                 <span className="text-xl font-bold text-material-green" data-testid="text-scans-today">
-                  {stats?.scansToday?.toLocaleString() || '...'}
+                  {stats?.scansToday?.toLocaleString() || '0'}
                 </span>
               </div>
 
@@ -85,7 +95,7 @@ export default function Scanner() {
                   <span className="font-medium">Last Updated</span>
                 </div>
                 <span className="text-sm font-medium text-material-orange" data-testid="text-last-update">
-                  {stats?.lastUpdate ? new Date(stats.lastUpdate).toLocaleTimeString() : '...'}
+                  {stats?.lastUpdate ? new Date(stats.lastUpdate).toLocaleTimeString() : 'Never'}
                 </span>
               </div>
             </div>
