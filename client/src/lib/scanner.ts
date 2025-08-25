@@ -13,6 +13,11 @@ export class BarcodeScanner {
     this.video = videoElement;
     
     try {
+      // Check if mediaDevices is available
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error('Camera not supported in this browser/environment');
+      }
+      
       this.stream = await navigator.mediaDevices.getUserMedia({
         video: {
           facingMode: 'environment', // Use back camera if available
