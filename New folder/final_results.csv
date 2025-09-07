@@ -1,6 +1,0 @@
-product_id,product_name,success,image_filename,source_site
-1,TEKNIKA AVOCADO OIL KIT,True,1.jpg,jumia_ci_main
-2,DEFRISANT ABC RELAXER CREAM 150ML,True,2.jpg,jumia_ci_main
-3,DEFRISANT ABC RELAXER CREAM 250ML,True,3.jpg,jumia_ci_main
-4,DEFRISANT ABC RELAXER CREAM 300ML,True,4.jpg,jumia_ci_main
-6,SAVON LIQUIDE VIE ET FRAICHE CITRON THE VERT,True,6.jpg,jumia_ci_main

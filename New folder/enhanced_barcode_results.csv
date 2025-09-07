@@ -1,4 +1,0 @@
-product_id,product_name,barcode,success,search_phase,source_site,image_filename
-44,BODY SPRAY MAN AMOUR 200ML,6181100631050,True,barcode_search,jumia_ci_barcode,44.jpg
-47,HUILE ABC OLIVE 70ML,6182000129685,True,barcode_search,jumia_ci_barcode,47.jpg
-49,MESH PRO ESSENCIALS 70ML,6182000120194,True,barcode_search,jumia_ci_barcode,49.jpg
