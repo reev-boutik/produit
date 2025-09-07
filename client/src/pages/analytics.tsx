@@ -5,11 +5,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { BarChart3, TrendingUp, Package, Clock, DollarSign, Activity } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslation } from "@/contexts/LocalizationContext";
 import type { Product, DetailCommande, ProductWithAnalytics } from "@shared/schema";
 
 export default function Analytics() {
   const [selectedProduct, setSelectedProduct] = useState<string>("");
   const [timeFrame, setTimeFrame] = useState<string>("30");
+  const { t } = useTranslation();
 
   // Fetch general statistics
   const { data: stats, isLoading: statsLoading } = useQuery<{
@@ -45,20 +47,20 @@ export default function Analytics() {
   const isLoading = statsLoading || analyticsLoading || historyLoading;
 
   return (
-    <main className="container mx-auto px-4 py-6 max-w-6xl pb-24 md:pb-6">
+    <main className="container mx-auto mobile-container px-2 md:px-4 py-2 md:py-6 max-w-6xl pb-24 md:pb-6">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Analytics Dashboard</h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          Monitor price trends and product performance across your database
+      <div className="mb-4 md:mb-8">
+        <h1 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">{t("analytics.title")}</h1>
+        <p className="text-sm md:text-base text-gray-600 dark:text-gray-400">
+          {t("analytics.subtitle")}
         </p>
       </div>
 
       {/* Controls */}
-      <div className="flex flex-col md:flex-row gap-4 mb-8">
+      <div className="flex flex-col md:flex-row gap-3 md:gap-4 mb-4 md:mb-8">
         <Select value={selectedProduct} onValueChange={setSelectedProduct}>
           <SelectTrigger className="w-full md:w-64" data-testid="select-product">
-            <SelectValue placeholder="Select a product..." />
+            <SelectValue placeholder={t("analytics.selectProduct")} />
           </SelectTrigger>
           <SelectContent>
             {products.map((product: Product) => (
@@ -74,78 +76,78 @@ export default function Analytics() {
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="7">Last 7 days</SelectItem>
-            <SelectItem value="30">Last 30 days</SelectItem>
-            <SelectItem value="90">Last 90 days</SelectItem>
-            <SelectItem value="365">Last year</SelectItem>
+            <SelectItem value="7">{t("analytics.last7Days")}</SelectItem>
+            <SelectItem value="30">{t("analytics.last30Days")}</SelectItem>
+            <SelectItem value="90">{t("analytics.last90Days")}</SelectItem>
+            <SelectItem value="365">{t("analytics.lastYear")}</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
       {/* Overall Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6 mb-4 md:mb-8">
         <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Products</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100" data-testid="stat-total-products">
+          <CardContent className="p-3 md:p-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between">
+              <div className="flex-1">
+                <p className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400">{t("analytics.totalProducts")}</p>
+                <p className="text-lg md:text-2xl font-bold text-gray-900 dark:text-gray-100" data-testid="stat-total-products">
                   {statsLoading ? <Skeleton className="h-8 w-20" /> : stats?.totalProducts?.toLocaleString() || '0'}
                 </p>
               </div>
-              <Package className="w-8 h-8 text-material-blue" />
+              <Package className="w-6 h-6 md:w-8 md:h-8 text-material-blue md:mt-0 mt-2" />
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Scans Today</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100" data-testid="stat-scans-today">
-                  {statsLoading ? <Skeleton className="h-8 w-20" /> : stats?.scansToday?.toLocaleString() || '0'}
+          <CardContent className="p-3 md:p-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between">
+              <div className="flex-1">
+                <p className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400">{t("analytics.scansToday")}</p>
+                <p className="text-lg md:text-2xl font-bold text-gray-900 dark:text-gray-100" data-testid="stat-scans-today">
+                  {statsLoading ? <Skeleton className="h-6 md:h-8 w-16 md:w-20" /> : stats?.scansToday?.toLocaleString() || '0'}
                 </p>
               </div>
-              <Activity className="w-8 h-8 text-material-green" />
+              <Activity className="w-6 h-6 md:w-8 md:h-8 text-material-green md:mt-0 mt-2" />
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Avg Price Range</p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-gray-100" data-testid="stat-avg-price">
+          <CardContent className="p-3 md:p-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between">
+              <div className="flex-1">
+                <p className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400">{t("analytics.avgPrice")}</p>
+                <p className="text-lg md:text-2xl font-bold text-gray-900 dark:text-gray-100" data-testid="stat-avg-price">
                   {productAnalytics ? (
                     `$${parseFloat(productAnalytics.avgPrice).toFixed(2)}`
                   ) : (
-                    <span className="text-gray-400">Select product</span>
+                    <span className="text-gray-400 text-sm">{t("analytics.select")}</span>
                   )}
                 </p>
               </div>
-              <DollarSign className="w-8 h-8 text-material-orange" />
+              <DollarSign className="w-6 h-6 md:w-8 md:h-8 text-material-orange md:mt-0 mt-2" />
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Last Updated</p>
-                <p className="text-sm font-medium text-gray-900 dark:text-gray-100" data-testid="stat-last-update">
+          <CardContent className="p-3 md:p-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between">
+              <div className="flex-1">
+                <p className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400">{t("analytics.lastUpdated")}</p>
+                <p className="text-xs md:text-sm font-medium text-gray-900 dark:text-gray-100" data-testid="stat-last-update">
                   {statsLoading ? (
-                    <Skeleton className="h-5 w-24" />
+                    <Skeleton className="h-4 md:h-5 w-20 md:w-24" />
                   ) : stats?.lastUpdate ? (
                     new Date(stats.lastUpdate).toLocaleTimeString()
                   ) : (
-                    'Unknown'
+                    t("analytics.unknown")
                   )}
                 </p>
               </div>
-              <Clock className="w-8 h-8 text-gray-400" />
+              <Clock className="w-6 h-6 md:w-8 md:h-8 text-gray-400 md:mt-0 mt-2" />
             </div>
           </CardContent>
         </Card>
@@ -158,34 +160,34 @@ export default function Analytics() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <BarChart3 className="w-5 h-5" />
-                <span>Price Analytics</span>
+                <span>{t("analytics.priceAnalytics")}</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-950/20 rounded-lg">
-                  <span className="text-sm font-medium">Minimum Price</span>
+                  <span className="text-sm font-medium">{t("analytics.minimumPrice")}</span>
                   <span className="text-lg font-bold text-green-600" data-testid="analytics-min-price">
                     ${parseFloat(productAnalytics.minPrice).toFixed(2)}
                   </span>
                 </div>
                 
                 <div className="flex justify-between items-center p-3 bg-red-50 dark:bg-red-950/20 rounded-lg">
-                  <span className="text-sm font-medium">Maximum Price</span>
+                  <span className="text-sm font-medium">{t("analytics.maximumPrice")}</span>
                   <span className="text-lg font-bold text-red-600" data-testid="analytics-max-price">
                     ${parseFloat(productAnalytics.maxPrice).toFixed(2)}
                   </span>
                 </div>
                 
                 <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
-                  <span className="text-sm font-medium">Average Price</span>
+                  <span className="text-sm font-medium">{t("analytics.averagePrice")}</span>
                   <span className="text-lg font-bold text-material-blue" data-testid="analytics-avg-price">
                     ${parseFloat(productAnalytics.avgPrice).toFixed(2)}
                   </span>
                 </div>
                 
                 <div className="flex justify-between items-center p-3 bg-orange-50 dark:bg-orange-950/20 rounded-lg">
-                  <span className="text-sm font-medium">Current Price</span>
+                  <span className="text-sm font-medium">{t("analytics.currentPrice")}</span>
                   <span className="text-lg font-bold text-material-orange" data-testid="analytics-current-price">
                     ${parseFloat(productAnalytics.currentPrice).toFixed(2)}
                   </span>

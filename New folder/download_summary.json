@@ -1,0 +1,29 @@
+{
+  "total_products": 5,
+  "images_found": 5,
+  "images_downloaded": 5,
+  "success_rate": "100.0%",
+  "sites_used": {
+    "jumia_ci": 3,
+    "jumia_kenya": 1,
+    "jumia_nigeria": 1
+  },
+  "categories": {
+    "Electronics": {
+      "total": 2,
+      "found": 2
+    },
+    "Clothing": {
+      "total": 1,
+      "found": 1
+    },
+    "Home & Garden": {
+      "total": 1,
+      "found": 1
+    },
+    "Health & Beauty": {
+      "total": 1,
+      "found": 1
+    }
+  }
+}

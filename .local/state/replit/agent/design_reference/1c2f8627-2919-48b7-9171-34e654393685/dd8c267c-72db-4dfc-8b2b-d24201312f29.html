@@ -1,0 +1,500 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PriceScan - Database-Powered Product Scanner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    'roboto': ['Roboto', 'sans-serif'],
+                },
+                colors: {
+                    'material-blue': '#1976D2',
+                    'material-green': '#388E3C',
+                    'material-orange': '#FF9800',
+                    'material-surface': '#FFFFFF',
+                    'material-surface-dark': '#121212',
+                }
+            }
+        }
+    };
+    </script>
+</head>
+<body class="font-roboto bg-gray-50 min-h-screen">
+    <!-- @COMPONENT: AppHeader [navigation and branding] -->
+    <header class="bg-material-blue text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <span class="material-icons text-3xl">qr_code_scanner</span>
+                    <h1 class="text-2xl font-medium">PriceScan</h1>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <button class="flex items-center space-x-1 px-3 py-2 rounded-lg hover:bg-blue-600 transition-colors" data-event="click:navigateToScanner">
+                        <span class="material-icons">camera_alt</span>
+                        <span>Scanner</span>
+                    </button>
+                    <button class="flex items-center space-x-1 px-3 py-2 rounded-lg hover:bg-blue-600 transition-colors" data-event="click:navigateToProducts">
+                        <span class="material-icons">inventory</span>
+                        <span>Products</span>
+                    </button>
+                    <button class="flex items-center space-x-1 px-3 py-2 rounded-lg hover:bg-blue-600 transition-colors" data-event="click:navigateToAnalytics">
+                        <span class="material-icons">analytics</span>
+                        <span>Analytics</span>
+                    </button>
+                </nav>
+                <button class="md:hidden">
+                    <span class="material-icons">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: AppHeader -->
+
+    <!-- @COMPONENT: MainContent [dynamic content area] -->
+    <main class="container mx-auto px-4 py-6 max-w-6xl">
+        
+        <!-- @COMPONENT: ScannerInterface [primary scanning functionality] -->
+        <section id="scanner-section" class="mb-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Scanner Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-medium text-gray-800">Barcode Scanner</h2>
+                        <span class="material-icons text-material-green">camera_alt</span>
+                    </div>
+                    
+                    <!-- @FUNCTIONALITY: Camera feed for barcode scanning using WebRTC API -->
+                    <div class="relative bg-gray-100 rounded-lg overflow-hidden mb-4" style="aspect-ratio: 16/9;">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <span class="material-icons text-6xl text-gray-400 mb-2">qr_code_scanner</span>
+                                <p class="text-gray-500">Position barcode in view</p>
+                                <!-- @STATE: isScanning:boolean = false, detectedCode:string = null -->
+                            </div>
+                        </div>
+                        
+                        <!-- Scanning overlay -->
+                        <div class="absolute inset-0 border-2 border-transparent">
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-32 border-2 border-material-orange rounded-lg shadow-lg">
+                                <div class="absolute top-0 left-0 w-6 h-6 border-t-4 border-l-4 border-material-orange"></div>
+                                <div class="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-material-orange"></div>
+                                <div class="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-material-orange"></div>
+                                <div class="absolute bottom-0 right-0 w-6 h-6 border-b-4 border-r-4 border-material-orange"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col space-y-3">
+                        <button class="bg-material-blue text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2" data-event="click:startScanning" data-implementation="Initialize camera and start barcode detection">
+                            <span class="material-icons">play_arrow</span>
+                            <span>Start Scanning</span>
+                        </button>
+                        
+                        <div class="flex space-x-2">
+                            <input type="text" placeholder="Or enter barcode manually" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-material-blue focus:border-transparent" data-bind="manualBarcode">
+                            <button class="bg-material-green text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors" data-event="click:searchManualBarcode">
+                                <span class="material-icons">search</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats Card -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-medium text-gray-800 mb-4">Database Statistics</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <span class="material-icons text-material-blue">inventory</span>
+                                <span class="font-medium">Total Products</span>
+                            </div>
+                            <span class="text-xl font-bold text-material-blue" data-bind="stats.totalProducts">524,891</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <span class="material-icons text-material-green">trending_up</span>
+                                <span class="font-medium">Scans Today</span>
+                            </div>
+                            <span class="text-xl font-bold text-material-green" data-bind="stats.scansToday">1,247</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
+                            <div class="flex items-center space-x-3">
+                                <span class="material-icons text-material-orange">update</span>
+                                <span class="font-medium">Last Updated</span>
+                            </div>
+                            <span class="text-sm font-medium text-material-orange" data-bind="stats.lastUpdate">2 mins ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: ScannerInterface -->
+
+        <!-- @COMPONENT: ProductDetails [scanned product information] -->
+        <section id="product-details" class="mb-8">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-medium text-gray-800">Product Details</h2>
+                    <span class="px-3 py-1 bg-material-green text-white text-sm rounded-full" data-bind="product.status">In Stock</span>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Product Information -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-sm font-medium text-gray-500">Product Name</label>
+                            <p class="text-lg font-medium text-gray-800" data-bind="product.designation" data-mock="true">Samsung Galaxy S24 Ultra 256GB</p>
+                        </div>
+                        
+                        <div>
+                            <label class="text-sm font-medium text-gray-500">Barcode</label>
+                            <p class="font-mono text-gray-600" data-bind="product.codebar" data-mock="true">8806094815427</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-sm font-medium text-gray-500">Current Price</label>
+                                <p class="text-2xl font-bold text-material-blue" data-bind="product.currentPrice" data-mock="true">$1,199.99</p>
+                            </div>
+                            <div>
+                                <label class="text-sm font-medium text-gray-500">Stock Quantity</label>
+                                <p class="text-2xl font-bold text-material-green" data-bind="product.stockQuantity" data-mock="true">47</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Price Analytics -->
+                    <div class="space-y-4">
+                        <h3 class="font-medium text-gray-800">Price Analytics</h3>
+                        
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500">Minimum Price</span>
+                                <span class="font-medium text-green-600" data-bind="analytics.minPrice" data-mock="true">$1,099.99</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500">Maximum Price</span>
+                                <span class="font-medium text-red-600" data-bind="analytics.maxPrice" data-mock="true">$1,399.99</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-500">Average Price</span>
+                                <span class="font-medium text-gray-800" data-bind="analytics.avgPrice" data-mock="true">$1,249.99</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Price Position Indicator -->
+                        <div class="mt-4">
+                            <label class="text-sm font-medium text-gray-500 mb-2 block">Current Price Position</label>
+                            <div class="relative h-2 bg-gray-200 rounded-full">
+                                <div class="absolute h-2 bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 rounded-full" style="width: 100%;"></div>
+                                <!-- Current price indicator positioned at ~60% (good deal) -->
+                                <div class="absolute w-4 h-4 bg-white border-2 border-material-blue rounded-full -top-1 shadow-lg" style="left: 40%; transform: translateX(-50%);" data-bind="analytics.pricePosition">
+                                    <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-material-blue text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                                        Good Deal
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>Great Deal</span>
+                                <span>Fair Price</span>
+                                <span>Expensive</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: ProductDetails -->
+
+        <!-- @COMPONENT: ProductListing [search and browse products] -->
+        <section id="product-listing" class="mb-8">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                    <h2 class="text-xl font-medium text-gray-800 mb-4 md:mb-0">Product Database</h2>
+                    
+                    <!-- Search and Filter Controls -->
+                    <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
+                        <div class="relative">
+                            <span class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">search</span>
+                            <input type="text" placeholder="Search products..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-material-blue focus:border-transparent w-full md:w-64" data-bind="searchQuery" data-event="input:handleSearch">
+                        </div>
+                        
+                        <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-material-blue focus:border-transparent" data-bind="categoryFilter" data-event="change:handleCategoryFilter">
+                            <option>All Categories</option>
+                            <option>Electronics</option>
+                            <option>Clothing</option>
+                            <option>Home & Garden</option>
+                            <option>Sports</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Products Table -->
+                <!-- @MAP: products.map(product => ( -->
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Barcode</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50" data-mock="true">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center">
+                                            <span class="material-icons text-gray-400">smartphone</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900" data-bind="product.designation">iPhone 15 Pro Max</div>
+                                            <div class="text-sm text-gray-500">Apple</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm font-mono text-gray-500" data-bind="product.codebar">194253094043</td>
+                                <td class="px-6 py-4 text-sm font-medium text-gray-900" data-bind="product.currentPrice">$1,299.99</td>
+                                <td class="px-6 py-4 text-sm text-gray-500" data-bind="product.stockQuantity">23</td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-1 text-xs font-medium bg-material-green text-white rounded-full" data-bind="product.status">In Stock</span>
+                                </td>
+                                <td class="px-6 py-4 text-sm">
+                                    <button class="text-material-blue hover:text-blue-700 mr-3" data-event="click:viewProductDetails">
+                                        <span class="material-icons">visibility</span>
+                                    </button>
+                                    <button class="text-material-orange hover:text-orange-700" data-event="click:scanProduct">
+                                        <span class="material-icons">qr_code_scanner</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="hover:bg-gray-50" data-mock="true">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center">
+                                            <span class="material-icons text-gray-400">laptop</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900" data-bind="product.designation">MacBook Air M3</div>
+                                            <div class="text-sm text-gray-500">Apple</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm font-mono text-gray-500" data-bind="product.codebar">194253421768</td>
+                                <td class="px-6 py-4 text-sm font-medium text-gray-900" data-bind="product.currentPrice">$1,199.99</td>
+                                <td class="px-6 py-4 text-sm text-gray-500" data-bind="product.stockQuantity">15</td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full" data-bind="product.status">Low Stock</span>
+                                </td>
+                                <td class="px-6 py-4 text-sm">
+                                    <button class="text-material-blue hover:text-blue-700 mr-3" data-event="click:viewProductDetails">
+                                        <span class="material-icons">visibility</span>
+                                    </button>
+                                    <button class="text-material-orange hover:text-orange-700" data-event="click:scanProduct">
+                                        <span class="material-icons">qr_code_scanner</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="hover:bg-gray-50" data-mock="true">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center">
+                                            <span class="material-icons text-gray-400">headphones</span>
+                                        </div>
+                                        <div>
+                                            <div class="text-sm font-medium text-gray-900" data-bind="product.designation">AirPods Pro (3rd gen)</div>
+                                            <div class="text-sm text-gray-500">Apple</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm font-mono text-gray-500" data-bind="product.codebar">194253775843</td>
+                                <td class="px-6 py-4 text-sm font-medium text-gray-900" data-bind="product.currentPrice">$249.99</td>
+                                <td class="px-6 py-4 text-sm text-gray-500" data-bind="product.stockQuantity">0</td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-1 text-xs font-medium bg-red-100 text-red-800 rounded-full" data-bind="product.status">Out of Stock</span>
+                                </td>
+                                <td class="px-6 py-4 text-sm">
+                                    <button class="text-material-blue hover:text-blue-700 mr-3" data-event="click:viewProductDetails">
+                                        <span class="material-icons">visibility</span>
+                                    </button>
+                                    <button class="text-gray-400 cursor-not-allowed" disabled>
+                                        <span class="material-icons">qr_code_scanner</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- @END_MAP )) -->
+                
+                <!-- Pagination -->
+                <div class="flex items-center justify-between mt-6">
+                    <div class="text-sm text-gray-500">
+                        Showing <span data-bind="pagination.start" data-mock="true">1</span> to <span data-bind="pagination.end" data-mock="true">10</span> of <span data-bind="pagination.total" data-mock="true">524,891</span> products
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50" data-event="click:previousPage" data-implementation="Navigate to previous page of results">
+                            <span class="material-icons">chevron_left</span>
+                        </button>
+                        <span class="px-3 py-2 text-sm text-gray-600">Page <span data-bind="pagination.current" data-mock="true">1</span> of <span data-bind="pagination.totalPages" data-mock="true">52,489</span></span>
+                        <button class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50" data-event="click:nextPage" data-implementation="Navigate to next page of results">
+                            <span class="material-icons">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: ProductListing -->
+
+        <!-- @COMPONENT: LoadingStates [various loading indicators] -->
+        <section id="loading-states" class="hidden">
+            <!-- Scanner Loading State -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                <div class="flex items-center justify-center space-x-3">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-material-blue"></div>
+                    <span class="text-gray-600">Initializing camera...</span>
+                </div>
+            </div>
+            
+            <!-- Database Query Loading -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                <div class="flex items-center justify-center space-x-3">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-material-green"></div>
+                    <span class="text-gray-600">Searching database...</span>
+                </div>
+            </div>
+            
+            <!-- Price Analytics Loading -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-center space-x-3">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-material-orange"></div>
+                    <span class="text-gray-600">Calculating price analytics...</span>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: LoadingStates -->
+
+        <!-- @COMPONENT: ErrorStates [error handling displays] -->
+        <section id="error-states" class="hidden">
+            <!-- Invalid Barcode Error -->
+            <div class="bg-red-50 border border-red-200 rounded-xl p-6 mb-6">
+                <div class="flex items-center space-x-3">
+                    <span class="material-icons text-red-500">error</span>
+                    <div>
+                        <h3 class="font-medium text-red-800">Invalid Barcode</h3>
+                        <p class="text-red-600">The scanned barcode could not be recognized. Please try again.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Not Found Error -->
+            <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-6">
+                <div class="flex items-center space-x-3">
+                    <span class="material-icons text-yellow-500">warning</span>
+                    <div>
+                        <h3 class="font-medium text-yellow-800">Product Not Found</h3>
+                        <p class="text-yellow-600">This product is not in our database. Would you like to add it?</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Database Connection Error -->
+            <div class="bg-red-50 border border-red-200 rounded-xl p-6">
+                <div class="flex items-center space-x-3">
+                    <span class="material-icons text-red-500">error_outline</span>
+                    <div>
+                        <h3 class="font-medium text-red-800">Database Connection Failed</h3>
+                        <p class="text-red-600">Unable to connect to the product database. Please check your connection and try again.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: ErrorStates -->
+
+    </main>
+    <!-- @END_COMPONENT: MainContent -->
+
+    <!-- @COMPONENT: BottomNavigation [mobile navigation] -->
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
+        <div class="flex justify-around">
+            <button class="flex flex-col items-center py-2 px-3 text-material-blue" data-event="click:navigateToScanner">
+                <span class="material-icons text-2xl">qr_code_scanner</span>
+                <span class="text-xs mt-1">Scanner</span>
+            </button>
+            <button class="flex flex-col items-center py-2 px-3 text-gray-600" data-event="click:navigateToProducts">
+                <span class="material-icons text-2xl">inventory</span>
+                <span class="text-xs mt-1">Products</span>
+            </button>
+            <button class="flex flex-col items-center py-2 px-3 text-gray-600" data-event="click:navigateToAnalytics">
+                <span class="material-icons text-2xl">analytics</span>
+                <span class="text-xs mt-1">Analytics</span>
+            </button>
+            <button class="flex flex-col items-center py-2 px-3 text-gray-600" data-event="click:navigateToSettings">
+                <span class="material-icons text-2xl">settings</span>
+                <span class="text-xs mt-1">Settings</span>
+            </button>
+        </div>
+    </nav>
+    <!-- @END_COMPONENT: BottomNavigation -->
+
+    <!-- @COMPONENT: FloatingActionButton [quick scan access] -->
+    <button class="fixed bottom-20 right-6 md:bottom-6 w-14 h-14 bg-material-orange text-white rounded-full shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center" data-event="click:quickScan" data-implementation="Trigger quick scan mode">
+        <span class="material-icons text-2xl">add</span>
+    </button>
+    <!-- @END_COMPONENT: FloatingActionButton -->
+
+    <script>
+        (function() {
+            // TODO: Implement camera initialization and barcode detection
+            // TODO: Implement database API calls for product lookup
+            // TODO: Implement price analytics calculations from DetailCommande table
+            // TODO: Implement real-time search and filtering
+            // TODO: Implement pagination for large datasets
+            // TODO: Implement error handling for API failures
+            // TODO: Implement state management for application data
+            
+            // Example placeholder for scanner functionality
+            function initializeScanner() {
+                console.log('Scanner initialization would happen here');
+                // Would integrate with WebRTC for camera access
+                // Would use a barcode detection library like ZXing
+            }
+            
+            function searchDatabase(barcode) {
+                console.log('Database search for barcode:', barcode);
+                // Would make API call to PostgreSQL backend
+                // Would handle loading states and error responses
+            }
+            
+            function calculatePriceAnalytics(productId) {
+                console.log('Price analytics calculation for product:', productId);
+                // Would query DetailCommande table for historical prices
+                // Would calculate min, max, average prices
+            }
+            
+            // Example event listeners for demo purposes only
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('[data-event*="click:"]')) {
+                    const action = e.target.closest('[data-event*="click:"]').dataset.event.split(':')[1];
+                    console.log('Action triggered:', action);
+                    // Real implementation would route to appropriate handlers
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

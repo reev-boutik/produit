@@ -1,15 +1,35 @@
 import { Pool, neonConfig } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-serverless';
+import { drizzle as drizzlePostgres } from 'drizzle-orm/postgres-js';
+import postgres from 'postgres';
 import ws from "ws";
 import * as schema from "@shared/schema";
 
 neonConfig.webSocketConstructor = ws;
 
-if (!process.env.DATABASE_URL) {
-  throw new Error(
-    "DATABASE_URL must be set. Did you forget to provision a database?",
-  );
+// Determine which database to use based on environment
+const isProduction = process.env.NODE_ENV === 'production';
+const useXata = process.env.USE_XATA === 'true' || isProduction;
+
+let db: ReturnType<typeof drizzle> | ReturnType<typeof drizzlePostgres>;
+let pool: Pool | postgres.Sql;
+
+if (useXata) {
+  // Use Xata/Neon for production or when explicitly requested
+  const databaseUrl = process.env.DATABASE_URL || process.env.DATABASE_URL_POSTGRES;
+  if (!databaseUrl) {
+    throw new Error(
+      "DATABASE_URL or DATABASE_URL_POSTGRES must be set for Xata connection",
+    );
+  }
+  pool = new Pool({ connectionString: databaseUrl });
+  db = drizzle({ client: pool as Pool, schema });
+} else {
+  // Use local PostgreSQL for development
+  const localUrl = process.env.LOCAL_DATABASE_URL || 'postgresql://postgres:a@localhost:5432/reev_db';
+  console.log('Connecting to local database:', localUrl.replace(/password/, '***'));
+  pool = postgres(localUrl);
+  db = drizzlePostgres(pool as postgres.Sql, { schema });
 }
 
-export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-export const db = drizzle({ client: pool, schema });
+export { db, pool };

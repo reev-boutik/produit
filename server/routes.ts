@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertProductSchema, insertDetailCommandeSchema } from "@shared/schema";
+import { getExchangeRates, getCacheInfo } from "./services/exchangeRateService";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -34,14 +35,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/products/search", async (req, res) => {
+    try {
+      const query = req.query.q as string; // Use 'q' parameter for search
+      const category = req.query.category as string;
+      const stockStatus = req.query.stockStatus as string;
+      const limit = parseInt(req.query.limit as string) || 10;
+      const offset = parseInt(req.query.offset as string) || 0;
+      const sortBy = req.query.sortBy as string;
+      const sortOrder = req.query.sortOrder as string;
+
+      console.log('Search request:', { query, category, stockStatus, limit, offset, sortBy, sortOrder });
+      const result = await storage.searchProducts(query, category, stockStatus, limit, offset, sortBy, sortOrder);
+      console.log('Search result:', { count: result.products.length, total: result.total });
+      res.json(result);
+    } catch (error) {
+      console.error('Search error details:', error);
+      console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
+      res.status(500).json({ message: "Failed to fetch product", error: error instanceof Error ? error.message : String(error) });
+    }
+  });
+
   app.get("/api/products", async (req, res) => {
     try {
       const query = req.query.search as string;
       const category = req.query.category as string;
+      const stockStatus = req.query.stockStatus as string;
       const limit = parseInt(req.query.limit as string) || 10;
       const offset = parseInt(req.query.offset as string) || 0;
+      const sortBy = req.query.sortBy as string;
+      const sortOrder = req.query.sortOrder as string;
 
-      const result = await storage.searchProducts(query, category, limit, offset);
+      const result = await storage.searchProducts(query, category, stockStatus, limit, offset, sortBy, sortOrder);
       res.json(result);
     } catch (error) {
       res.status(500).json({ message: "Failed to search products" });
@@ -88,7 +113,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const priceData = insertDetailCommandeSchema.parse({
         ...req.body,
-        productId: req.params.id
+        produitId: req.params.id
       });
       const detail = await storage.createDetailCommande(priceData);
       res.status(201).json(detail);
@@ -97,6 +122,40 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid price data", errors: error.errors });
       }
       res.status(500).json({ message: "Failed to record price" });
+    }
+  });
+
+  // Categories route
+  app.get("/api/categories", async (req, res) => {
+    try {
+      const categories = await storage.getUniqueCategories();
+      res.json(categories);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch categories" });
+    }
+  });
+
+  // Sorting options route
+  app.get("/api/sort-options", async (req, res) => {
+    try {
+      const sortOptions = [
+        { value: 'relevance', label: 'Relevance', description: 'Best match for search query' },
+        { value: 'name', label: 'Name (A-Z)', description: 'Sort by product name alphabetically' },
+        { value: 'price', label: 'Price', description: 'Sort by price' },
+        { value: 'stock', label: 'Stock Level', description: 'Sort by available stock' },
+        { value: 'category', label: 'Category', description: 'Sort by product category' },
+        { value: 'created', label: 'Date Added', description: 'Sort by creation date' },
+        { value: 'modified', label: 'Last Modified', description: 'Sort by last modification date' }
+      ];
+      
+      const sortOrders = [
+        { value: 'asc', label: 'Ascending' },
+        { value: 'desc', label: 'Descending' }
+      ];
+      
+      res.json({ sortOptions, sortOrders });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch sort options" });
     }
   });
 
@@ -115,6 +174,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch statistics" });
+    }
+  });
+
+  // Exchange rates routes
+  app.get("/api/exchange-rates", async (req, res) => {
+    try {
+      const rates = await getExchangeRates();
+      const cacheInfo = getCacheInfo();
+      
+      res.json({
+        rates,
+        cache: {
+          lastUpdated: cacheInfo.lastUpdated ? new Date(cacheInfo.lastUpdated).toISOString() : null,
+          expiresAt: cacheInfo.expiresAt ? new Date(cacheInfo.expiresAt).toISOString() : null
+        }
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch exchange rates" });
     }
   });
 

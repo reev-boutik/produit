@@ -1,0 +1,50 @@
+[
+  {
+    "product_id": 44,
+    "designation": "BODY SPRAY MAN AMOUR 200ML",
+    "codebar": "6181100631050",
+    "category": "PARFUMERIE",
+    "image_found": true,
+    "image_url": "https://www.jumia.ci/assets_he/images/binoculars.389fc56a.svg",
+    "source_site": "jumia_ci_barcode",
+    "search_phase": "barcode_search",
+    "search_terms_used": [
+      "barcode:6181100631050"
+    ],
+    "download_success": true,
+    "local_filename": "44.jpg",
+    "database_updated": true
+  },
+  {
+    "product_id": 47,
+    "designation": "HUILE ABC OLIVE 70ML",
+    "codebar": "6182000129685",
+    "category": "COSMETIQUE",
+    "image_found": true,
+    "image_url": "https://www.jumia.ci/assets_he/images/binoculars.389fc56a.svg",
+    "source_site": "jumia_ci_barcode",
+    "search_phase": "barcode_search",
+    "search_terms_used": [
+      "barcode:6182000129685"
+    ],
+    "download_success": true,
+    "local_filename": "47.jpg",
+    "database_updated": true
+  },
+  {
+    "product_id": 49,
+    "designation": "MESH PRO ESSENCIALS 70ML",
+    "codebar": "6182000120194",
+    "category": "COSMETIQUE",
+    "image_found": true,
+    "image_url": "https://www.jumia.ci/assets_he/images/binoculars.389fc56a.svg",
+    "source_site": "jumia_ci_barcode",
+    "search_phase": "barcode_search",
+    "search_terms_used": [
+      "barcode:6182000120194"
+    ],
+    "download_success": true,
+    "local_filename": "49.jpg",
+    "database_updated": true
+  }
+]

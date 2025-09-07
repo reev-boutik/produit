@@ -1,0 +1,69 @@
+{
+  "tables": [
+    {
+      "name": "products",
+      "columns": [
+        {
+          "name": "codebar",
+          "type": "string"
+        },
+        {
+          "name": "designation",
+          "type": "text"
+        },
+        {
+          "name": "currentPrice",
+          "type": "float"
+        },
+        {
+          "name": "stockQuantity",
+          "type": "int"
+        },
+        {
+          "name": "category",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "detail_commande",
+      "columns": [
+        {
+          "name": "product",
+          "type": "link",
+          "link": {
+            "table": "products"
+          }
+        },
+        {
+          "name": "price",
+          "type": "float"
+        },
+        {
+          "name": "quantity",
+          "type": "int"
+        },
+        {
+          "name": "commandeDate",
+          "type": "datetime"
+        }
+      ]
+    },
+    {
+      "name": "product_scans",
+      "columns": [
+        {
+          "name": "product",
+          "type": "link",
+          "link": {
+            "table": "products"
+          }
+        },
+        {
+          "name": "scannedAt",
+          "type": "datetime"
+        }
+      ]
+    }
+  ]
+}

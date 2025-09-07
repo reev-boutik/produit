@@ -1,0 +1,52 @@
+2025-09-04 17:07:12,529 - INFO - Created directories: product_images
+2025-09-04 17:07:12,530 - INFO - Extracting products from SQL backup...
+2025-09-04 17:07:12,530 - INFO - Extracted 5 products from SQL backup
+2025-09-04 17:07:12,531 - INFO - Starting image download for 5 products...
+2025-09-04 17:07:12,531 - INFO - Progress: 1/5
+2025-09-04 17:07:12,531 - INFO - Processing product: Apple iPhone 15 (ID: bec412a8-4c4c-41d5-9a2c-846eb351bc95)
+2025-09-04 17:07:12,531 - INFO - Searching 'Apple iPhone 15' on jumia_ci
+2025-09-04 17:07:14,541 - INFO - Found Jumia image: https://ci.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/42/646713/1.jpg?8684
+2025-09-04 17:07:14,914 - INFO - Downloaded image: product_images\found\bec412a8-4c4c-41d5-9a2c-846eb351bc95.jpg
+2025-09-04 17:07:15,917 - INFO - Progress: 2/5
+2025-09-04 17:07:15,917 - INFO - Processing product: Samsung Galaxy S24 (ID: 1fc3fb93-bfca-4455-b2c7-a5face6f74c8)
+2025-09-04 17:07:15,917 - INFO - Searching 'Samsung Galaxy S24' on jumia_ci
+2025-09-04 17:07:17,950 - INFO - Found Jumia image: https://ci.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/52/983972/1.jpg?1592
+2025-09-04 17:07:18,030 - INFO - Downloaded image: product_images\found\1fc3fb93-bfca-4455-b2c7-a5face6f74c8.jpg
+2025-09-04 17:07:19,031 - INFO - Progress: 3/5
+2025-09-04 17:07:19,035 - INFO - Processing product: Nike Air Max Shoes (ID: 1ddec026-5b9c-4547-aae5-b7295295408f)
+2025-09-04 17:07:19,036 - INFO - Searching 'Nike Air Max Shoes' on jumia_ci
+2025-09-04 17:07:21,200 - INFO - Searching 'Nike Air Max Shoes' on jumia_ghana
+2025-09-04 17:07:22,537 - WARNING - Request error for Nike Air Max Shoes on jumia_ghana: 403 Client Error: Forbidden for url: https://www.jumia.com.gh/catalog/?q=Nike+Air+Max+Shoes
+2025-09-04 17:07:23,038 - INFO - Searching 'Nike Air Max Shoes' on jumia_nigeria
+2025-09-04 17:07:25,250 - INFO - Searching 'Nike Air Max Shoes' on jumia_kenya
+2025-09-04 17:07:27,113 - INFO - Found Jumia image: https://ke.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/65/9465523/1.jpg?9727
+2025-09-04 17:07:27,447 - INFO - Downloaded image: product_images\found\1ddec026-5b9c-4547-aae5-b7295295408f.jpg
+2025-09-04 17:07:27,448 - INFO - Results saved to image_download_results.json
+2025-09-04 17:07:28,449 - INFO - Progress: 4/5
+2025-09-04 17:07:28,452 - INFO - Processing product: Coffee Maker Deluxe (ID: 2e4098f9-c134-4437-86b4-f8412b61e6e1)
+2025-09-04 17:07:28,452 - INFO - Searching 'Coffee Maker Deluxe' on jumia_ci
+2025-09-04 17:07:30,437 - INFO - Searching 'Coffee Maker Deluxe' on jumia_ghana
+2025-09-04 17:07:31,698 - WARNING - Request error for Coffee Maker Deluxe on jumia_ghana: 403 Client Error: Forbidden for url: https://www.jumia.com.gh/catalog/?q=Coffee+Maker+Deluxe
+2025-09-04 17:07:32,201 - INFO - Searching 'Coffee Maker Deluxe' on jumia_nigeria
+2025-09-04 17:07:34,259 - INFO - Searching 'Coffee Maker Deluxe' on jumia_kenya
+2025-09-04 17:07:36,367 - INFO - Searching 'Coffee Maker Deluxe' on google_shopping
+2025-09-04 17:07:41,693 - INFO - Searching '789456123789' on jumia_ci
+2025-09-04 17:07:43,762 - INFO - Searching '789456123789' on jumia_ghana
+2025-09-04 17:07:45,168 - WARNING - Request error for 789456123789 on jumia_ghana: 403 Client Error: Forbidden for url: https://www.jumia.com.gh/catalog/?q=789456123789
+2025-09-04 17:07:45,672 - INFO - Searching '789456123789' on jumia_nigeria
+2025-09-04 17:07:47,709 - INFO - Searching '789456123789' on jumia_kenya
+2025-09-04 17:07:49,931 - INFO - Searching '789456123789' on google_shopping
+2025-09-04 17:07:53,796 - INFO - Searching 'Coffee Maker' on jumia_ci
+2025-09-04 17:07:56,641 - INFO - Found Jumia image: https://ci.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/32/308103/1.jpg?4428
+2025-09-04 17:07:57,083 - INFO - Downloaded image: product_images\found\2e4098f9-c134-4437-86b4-f8412b61e6e1.jpg
+2025-09-04 17:07:58,084 - INFO - Progress: 5/5
+2025-09-04 17:07:58,087 - INFO - Processing product: Protein Powder 2kg (ID: 309df3f1-c13b-4bad-b01c-83b054243dd5)
+2025-09-04 17:07:58,087 - INFO - Searching 'Protein Powder 2kg' on jumia_ci
+2025-09-04 17:08:00,112 - INFO - Searching 'Protein Powder 2kg' on jumia_ghana
+2025-09-04 17:08:01,397 - WARNING - Request error for Protein Powder 2kg on jumia_ghana: 403 Client Error: Forbidden for url: https://www.jumia.com.gh/catalog/?q=Protein+Powder+2kg
+2025-09-04 17:08:01,900 - INFO - Searching 'Protein Powder 2kg' on jumia_nigeria
+2025-09-04 17:08:03,553 - INFO - Found Jumia image: https://ng.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/83/2581993/1.jpg?0762
+2025-09-04 17:08:04,148 - INFO - Downloaded image: product_images\found\309df3f1-c13b-4bad-b01c-83b054243dd5.jpg
+2025-09-04 17:08:05,153 - INFO - Results saved to image_download_results.json
+2025-09-04 17:08:05,156 - INFO - Summary: 5/5 images downloaded (100.0%)
+2025-09-04 17:08:05,157 - INFO - Sites used: {'jumia_ci': 3, 'jumia_kenya': 1, 'jumia_nigeria': 1}

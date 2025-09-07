@@ -1,0 +1,75 @@
+2025-09-04 18:28:17,882 - INFO - Directories ready: product_images
+2025-09-04 18:28:17,882 - INFO - Connecting to database...
+2025-09-04 18:28:17,908 - INFO - Database connected successfully
+2025-09-04 18:28:17,910 - INFO - Loaded 10 products from database
+2025-09-04 18:28:17,911 - INFO - Processing 10 products...
+2025-09-04 18:28:17,911 - INFO - [1/10] TEKNIKA AVOCADO OIL KIT (ID: 1)
+2025-09-04 18:28:17,911 - INFO -   Searching 'TEKNIKA AVOCADO OIL KIT' on jumia_ci
+2025-09-04 18:28:22,979 - WARNING - Request error on jumia_ci: 404 Client Error: Not Found for url: https://www.jumia.ci/beaute-sante/soins-cheveux/?q=TEKNIKA+AVOCADO+OIL+KIT
+2025-09-04 18:28:29,153 - WARNING - Request error on jumia_ci: 404 Client Error: Not Found for url: https://www.jumia.ci/beaute-sante/soins-cheveux/?q=TEKNIKA+AVOCADO+OIL+KIT
+2025-09-04 18:28:29,158 - INFO -   Searching 'TEKNIKA AVOCADO OIL KIT' on jumia_ci_general
+2025-09-04 18:28:33,623 - INFO -   Searching 'TEKNIKA AVOCADO OIL KIT' on jumia_nigeria
+2025-09-04 18:28:38,205 - INFO -   Searching 'TEKNIKA AVOCADO OIL KIT' on konga_nigeria
+2025-09-04 18:28:41,495 - INFO -   Searching 'TEKNIKA AVOCADO OIL KIT' on jumia_ghana_beauty
+2025-09-04 18:28:46,015 - WARNING - 403 blocked on jumia_ghana_beauty - attempt 1
+2025-09-04 18:28:56,411 - WARNING - 403 blocked on jumia_ghana_beauty - attempt 2
+2025-09-04 18:28:56,412 - INFO -   Searching 'TEKNIKA AVOCADO OIL KIT' on jumia_kenya
+2025-09-04 18:29:00,031 - INFO -   Searching 'TEKNIKA AVOCADO OIL KIT' on jumia_maroc
+2025-09-04 18:29:04,762 - WARNING - Request error on jumia_maroc: 404 Client Error: Not Found for url: https://www.jumia.ma/beaute-parfums-sante/?q=TEKNIKA+AVOCADO+OIL+KIT
+2025-09-04 18:29:11,881 - WARNING - Request error on jumia_maroc: 404 Client Error: Not Found for url: https://www.jumia.ma/beaute-parfums-sante/?q=TEKNIKA+AVOCADO+OIL+KIT
+2025-09-04 18:29:11,884 - INFO -   Searching 'TEKNIKA AVOCADO OIL KIT' on african_beauty_direct
+2025-09-04 18:29:18,188 - INFO -   Searching 'TEKNIKA AVOCADO OIL KIT' on alibaba_cosmetics
+2025-09-04 18:29:22,055 - INFO -   Searching '6182000112243' on jumia_ci
+2025-09-04 18:29:26,210 - WARNING - Request error on jumia_ci: 404 Client Error: Not Found for url: https://www.jumia.ci/beaute-sante/soins-cheveux/?q=6182000112243
+2025-09-04 18:29:33,427 - WARNING - Request error on jumia_ci: 404 Client Error: Not Found for url: https://www.jumia.ci/beaute-sante/soins-cheveux/?q=6182000112243
+2025-09-04 18:29:33,437 - INFO -   Searching '6182000112243' on jumia_ci_general
+2025-09-04 18:29:37,808 - INFO -   Searching '6182000112243' on jumia_nigeria
+2025-09-04 18:29:40,863 - INFO -   Searching '6182000112243' on konga_nigeria
+2025-09-04 18:29:44,888 - INFO -   Searching '6182000112243' on jumia_ghana_beauty
+2025-09-04 18:29:47,729 - WARNING - 403 blocked on jumia_ghana_beauty - attempt 1
+2025-09-04 18:29:56,361 - WARNING - 403 blocked on jumia_ghana_beauty - attempt 2
+2025-09-04 18:29:56,368 - INFO -   Searching '6182000112243' on jumia_kenya
+2025-09-04 18:30:00,551 - INFO -   Searching '6182000112243' on jumia_maroc
+2025-09-04 18:30:03,786 - WARNING - Request error on jumia_maroc: 404 Client Error: Not Found for url: https://www.jumia.ma/beaute-parfums-sante/?q=6182000112243
+2025-09-04 18:30:10,774 - WARNING - Request error on jumia_maroc: 404 Client Error: Not Found for url: https://www.jumia.ma/beaute-parfums-sante/?q=6182000112243
+2025-09-04 18:30:10,774 - INFO -   Searching '6182000112243' on african_beauty_direct
+2025-09-04 18:30:17,170 - INFO -   Searching '6182000112243' on alibaba_cosmetics
+2025-09-04 18:30:22,799 - INFO -   Searching 'TEKNIKA' on jumia_ci
+2025-09-04 18:30:26,822 - WARNING - Request error on jumia_ci: 404 Client Error: Not Found for url: https://www.jumia.ci/beaute-sante/soins-cheveux/?q=TEKNIKA
+2025-09-04 18:30:34,298 - WARNING - Request error on jumia_ci: 404 Client Error: Not Found for url: https://www.jumia.ci/beaute-sante/soins-cheveux/?q=TEKNIKA
+2025-09-04 18:30:34,298 - INFO -   Searching 'TEKNIKA' on jumia_ci_general
+2025-09-04 18:30:38,318 - INFO -   Searching 'TEKNIKA' on jumia_nigeria
+2025-09-04 18:30:42,431 - INFO -   Searching 'TEKNIKA' on konga_nigeria
+2025-09-04 18:30:46,907 - INFO -   Searching 'TEKNIKA' on jumia_ghana_beauty
+2025-09-04 18:30:50,263 - WARNING - 403 blocked on jumia_ghana_beauty - attempt 1
+2025-09-04 18:31:02,501 - WARNING - 403 blocked on jumia_ghana_beauty - attempt 2
+2025-09-04 18:31:02,505 - INFO -   Searching 'TEKNIKA' on jumia_kenya
+2025-09-04 18:31:06,798 - INFO -   Searching 'TEKNIKA' on jumia_maroc
+2025-09-04 18:31:11,129 - WARNING - Request error on jumia_maroc: 404 Client Error: Not Found for url: https://www.jumia.ma/beaute-parfums-sante/?q=TEKNIKA
+2025-09-04 18:31:18,990 - WARNING - Request error on jumia_maroc: 404 Client Error: Not Found for url: https://www.jumia.ma/beaute-parfums-sante/?q=TEKNIKA
+2025-09-04 18:31:18,991 - INFO -   Searching 'TEKNIKA' on african_beauty_direct
+2025-09-04 18:31:23,293 - INFO -   Searching 'TEKNIKA' on alibaba_cosmetics
+2025-09-04 18:31:26,061 - INFO -   Searching 'TEKNIKA AVOCADO' on jumia_ci
+2025-09-04 18:31:29,808 - WARNING - Request error on jumia_ci: 404 Client Error: Not Found for url: https://www.jumia.ci/beaute-sante/soins-cheveux/?q=TEKNIKA+AVOCADO
+2025-09-04 18:31:35,968 - WARNING - Request error on jumia_ci: 404 Client Error: Not Found for url: https://www.jumia.ci/beaute-sante/soins-cheveux/?q=TEKNIKA+AVOCADO
+2025-09-04 18:31:35,968 - INFO -   Searching 'TEKNIKA AVOCADO' on jumia_ci_general
+2025-09-04 18:31:39,378 - INFO -   Searching 'TEKNIKA AVOCADO' on jumia_nigeria
+2025-09-04 18:31:43,659 - INFO -   Searching 'TEKNIKA AVOCADO' on konga_nigeria
+2025-09-04 18:31:48,483 - INFO -   Searching 'TEKNIKA AVOCADO' on jumia_ghana_beauty
+2025-09-04 18:31:51,391 - WARNING - 403 blocked on jumia_ghana_beauty - attempt 1
+2025-09-04 18:32:02,049 - WARNING - 403 blocked on jumia_ghana_beauty - attempt 2
+2025-09-04 18:32:02,051 - INFO -   Searching 'TEKNIKA AVOCADO' on jumia_kenya
+2025-09-04 18:32:05,185 - INFO -   Searching 'TEKNIKA AVOCADO' on jumia_maroc
+2025-09-04 18:32:08,006 - WARNING - Request error on jumia_maroc: 404 Client Error: Not Found for url: https://www.jumia.ma/beaute-parfums-sante/?q=TEKNIKA+AVOCADO
+2025-09-04 18:32:15,292 - WARNING - Request error on jumia_maroc: 404 Client Error: Not Found for url: https://www.jumia.ma/beaute-parfums-sante/?q=TEKNIKA+AVOCADO
+2025-09-04 18:32:15,294 - INFO -   Searching 'TEKNIKA AVOCADO' on african_beauty_direct
+2025-09-04 18:32:18,768 - INFO -   Searching 'TEKNIKA AVOCADO' on alibaba_cosmetics
+2025-09-04 18:32:21,594 - WARNING - No image found for: TEKNIKA AVOCADO OIL KIT
+2025-09-04 18:32:21,597 - INFO - [2/10] DEFRISANT ABC RELAXER CREAM 150ML (ID: 2)
+2025-09-04 18:32:21,597 - INFO -   Searching 'DEFRISANT ABC RELAXER CREAM 150ML' on jumia_ci
+2025-09-04 18:32:24,134 - WARNING - Request error on jumia_ci: 404 Client Error: Not Found for url: https://www.jumia.ci/beaute-sante/soins-cheveux/?q=DEFRISANT+ABC+RELAXER+CREAM+150ML
+2025-09-04 18:32:31,879 - WARNING - Request error on jumia_ci: 404 Client Error: Not Found for url: https://www.jumia.ci/beaute-sante/soins-cheveux/?q=DEFRISANT+ABC+RELAXER+CREAM+150ML
+2025-09-04 18:32:31,880 - INFO -   Searching 'DEFRISANT ABC RELAXER CREAM 150ML' on jumia_ci_general
+2025-09-04 18:32:36,229 - INFO -   Searching 'DEFRISANT ABC RELAXER CREAM 150ML' on jumia_nigeria
+2025-09-04 18:32:39,960 - INFO -   Searching 'DEFRISANT ABC RELAXER CREAM 150ML' on konga_nigeria
+2025-09-04 18:32:41,947 - INFO - Process interrupted by user

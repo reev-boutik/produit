@@ -1,0 +1,10 @@
+{
+  "total_products_processed": 16,
+  "successful_downloads": 13,
+  "success_rate": "81.2%",
+  "total_images_downloaded": 45,
+  "white_background_images": 23,
+  "white_background_percentage": "51.1%",
+  "products_with_white_bg": 10,
+  "average_images_per_product": 2.8125
+}

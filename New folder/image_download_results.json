@@ -1,0 +1,107 @@
+[
+  {
+    "product_id": 1,
+    "designation": "TEKNIKA AVOCADO OIL KIT",
+    "codebar": "6182000112243",
+    "category": "COSMETIQUE",
+    "current_image_url": "",
+    "image_found": false,
+    "new_image_url": null,
+    "source_site": null,
+    "search_terms_used": [
+      "TEKNIKA AVOCADO OIL KIT",
+      "6182000112243",
+      "TEKNIKA AVOCADO",
+      "TEKNIKA",
+      "AVOCADO",
+      "OIL"
+    ],
+    "download_success": false,
+    "local_filename": null,
+    "database_updated": false
+  },
+  {
+    "product_id": 2,
+    "designation": "DEFRISANT ABC RELAXER CREAM 150ML",
+    "codebar": "6182000101506",
+    "category": "COSMETIQUE",
+    "current_image_url": "",
+    "image_found": false,
+    "new_image_url": null,
+    "source_site": null,
+    "search_terms_used": [
+      "DEFRISANT ABC RELAXER CREAM 150ML",
+      "6182000101506",
+      "DEFRISANT ABC",
+      "DEFRISANT",
+      "ABC",
+      "RELAXER"
+    ],
+    "download_success": false,
+    "local_filename": null,
+    "database_updated": false
+  },
+  {
+    "product_id": 3,
+    "designation": "DEFRISANT ABC RELAXER CREAM 250ML",
+    "codebar": "6182000129159",
+    "category": "COSMETIQUE",
+    "current_image_url": "",
+    "image_found": false,
+    "new_image_url": null,
+    "source_site": null,
+    "search_terms_used": [
+      "DEFRISANT ABC RELAXER CREAM 250ML",
+      "6182000129159",
+      "DEFRISANT ABC",
+      "DEFRISANT",
+      "ABC",
+      "RELAXER"
+    ],
+    "download_success": false,
+    "local_filename": null,
+    "database_updated": false
+  },
+  {
+    "product_id": 4,
+    "designation": "DEFRISANT ABC RELAXER CREAM 300ML",
+    "codebar": "6182000103227",
+    "category": "COSMETIQUE",
+    "current_image_url": "",
+    "image_found": false,
+    "new_image_url": null,
+    "source_site": null,
+    "search_terms_used": [
+      "DEFRISANT ABC RELAXER CREAM 300ML",
+      "6182000103227",
+      "DEFRISANT ABC",
+      "DEFRISANT",
+      "ABC",
+      "RELAXER"
+    ],
+    "download_success": false,
+    "local_filename": null,
+    "database_updated": false
+  },
+  {
+    "product_id": 6,
+    "designation": "SAVON LIQUIDE VIE ET FRAICHE CITRON THE VERT",
+    "codebar": "6181100459135",
+    "category": "ENTRETIEN - MAISON",
+    "current_image_url": "",
+    "image_found": false,
+    "new_image_url": null,
+    "source_site": null,
+    "search_terms_used": [
+      "SAVON LIQUIDE VIE ET FRAICHE CITRON THE VERT",
+      "6181100459135",
+      "SAVON LIQUIDE",
+      "SAVON",
+      "LIQUIDE",
+      "VIE"
+    ],
+    "download_success": false,
+    "local_filename": null,
+    "database_updated": false
+  }
+]

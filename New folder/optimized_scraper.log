@@ -1,0 +1,52 @@
+2025-09-04 18:34:09,378 - INFO - Directories ready: product_images
+2025-09-04 18:34:09,401 - INFO - Database connected successfully
+2025-09-04 18:34:09,403 - INFO - Loaded 5 products
+2025-09-04 18:34:09,403 - INFO - Processing 5 products...
+2025-09-04 18:34:09,403 - INFO - 
+[1/5] Starting product 1
+2025-09-04 18:34:09,403 - INFO - Searching for: TEKNIKA AVOCADO OIL KIT (ID: 1)
+2025-09-04 18:34:09,403 - INFO - Search terms: ['TEKNIKA AVOCADO OIL KIT', 'TEKNIKA', 'avocado oil kit', 'hair oil']
+2025-09-04 18:34:09,403 - INFO -   Trying: jumia_ci_main with 'TEKNIKA AVOCADO OIL KIT'
+2025-09-04 18:34:14,700 - INFO - Found Jumia image: https://www.jumia.ci/assets_he/images/binoculars.389fc56a.svg
+2025-09-04 18:34:17,697 - INFO - Downloaded: product_images\found\1.jpg
+2025-09-04 18:34:17,701 - INFO - Database updated for product 1
+2025-09-04 18:34:17,702 - INFO - ✅ SUCCESS: Found image for TEKNIKA AVOCADO OIL KIT
+2025-09-04 18:34:17,703 - INFO - 
+[2/5] Starting product 2
+2025-09-04 18:34:17,703 - INFO - Searching for: DEFRISANT ABC RELAXER CREAM 150ML (ID: 2)
+2025-09-04 18:34:17,703 - INFO - Search terms: ['DEFRISANT ABC RELAXER CREAM 150ML', 'DEFRISANT', 'hair relaxer', 'hair relaxer cream']
+2025-09-04 18:34:17,703 - INFO -   Trying: jumia_ci_main with 'DEFRISANT ABC RELAXER CREAM 150ML'
+2025-09-04 18:34:22,077 - INFO - Found Jumia image: https://www.jumia.ci/assets_he/images/binoculars.389fc56a.svg
+2025-09-04 18:34:24,562 - INFO - Downloaded: product_images\found\2.jpg
+2025-09-04 18:34:24,565 - INFO - Database updated for product 2
+2025-09-04 18:34:24,566 - INFO - Results saved: 2 products processed
+2025-09-04 18:34:24,567 - INFO - ✅ SUCCESS: Found image for DEFRISANT ABC RELAXER CREAM 150ML
+2025-09-04 18:34:24,567 - INFO - 
+[3/5] Starting product 3
+2025-09-04 18:34:24,567 - INFO - Searching for: DEFRISANT ABC RELAXER CREAM 250ML (ID: 3)
+2025-09-04 18:34:24,567 - INFO - Search terms: ['DEFRISANT ABC RELAXER CREAM 250ML', 'DEFRISANT', 'hair relaxer', 'hair relaxer cream']
+2025-09-04 18:34:24,567 - INFO -   Trying: jumia_ci_main with 'DEFRISANT ABC RELAXER CREAM 250ML'
+2025-09-04 18:34:30,096 - INFO - Found Jumia image: https://www.jumia.ci/assets_he/images/binoculars.389fc56a.svg
+2025-09-04 18:34:33,603 - INFO - Downloaded: product_images\found\3.jpg
+2025-09-04 18:34:33,607 - INFO - Database updated for product 3
+2025-09-04 18:34:33,608 - INFO - ✅ SUCCESS: Found image for DEFRISANT ABC RELAXER CREAM 250ML
+2025-09-04 18:34:33,608 - INFO - 
+[4/5] Starting product 4
+2025-09-04 18:34:33,608 - INFO - Searching for: DEFRISANT ABC RELAXER CREAM 300ML (ID: 4)
+2025-09-04 18:34:33,609 - INFO - Search terms: ['DEFRISANT ABC RELAXER CREAM 300ML', 'DEFRISANT', 'hair relaxer', 'hair relaxer cream']
+2025-09-04 18:34:33,610 - INFO -   Trying: jumia_ci_main with 'DEFRISANT ABC RELAXER CREAM 300ML'
+2025-09-04 18:34:38,072 - INFO - Found Jumia image: https://www.jumia.ci/assets_he/images/binoculars.389fc56a.svg
+2025-09-04 18:34:40,478 - INFO - Downloaded: product_images\found\4.jpg
+2025-09-04 18:34:40,482 - INFO - Database updated for product 4
+2025-09-04 18:34:40,482 - INFO - Results saved: 4 products processed
+2025-09-04 18:34:40,482 - INFO - ✅ SUCCESS: Found image for DEFRISANT ABC RELAXER CREAM 300ML
+2025-09-04 18:34:40,482 - INFO - 
+[5/5] Starting product 6
+2025-09-04 18:34:40,482 - INFO - Searching for: SAVON LIQUIDE VIE ET FRAICHE CITRON THE VERT (ID: 6)
+2025-09-04 18:34:40,482 - INFO - Search terms: ['SAVON LIQUIDE VIE ET FRAICHE CITRON THE VERT', 'SAVON', 'liquid soap', 'SAVON hair oil']
+2025-09-04 18:34:40,482 - INFO -   Trying: jumia_ci_main with 'SAVON LIQUIDE VIE ET FRAICHE CITRON THE VERT'
+2025-09-04 18:34:43,668 - INFO - Found Jumia image: https://ci.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/01/837713/1.jpg?9023
+2025-09-04 18:34:46,356 - INFO - Downloaded: product_images\found\6.jpg
+2025-09-04 18:34:46,359 - INFO - Database updated for product 6
+2025-09-04 18:34:46,361 - INFO - ✅ SUCCESS: Found image for SAVON LIQUIDE VIE ET FRAICHE CITRON THE VERT
+2025-09-04 18:34:46,361 - INFO - Results saved: 5 products processed

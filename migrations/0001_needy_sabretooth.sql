@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "article_id" varchar(255);

@@ -1,0 +1,18 @@
+{
+  "total_products": 5,
+  "images_found": 0,
+  "images_downloaded": 0,
+  "database_updated": 0,
+  "success_rate": "0.0%",
+  "sites_used": {},
+  "categories": {
+    "COSMETIQUE": {
+      "total": 4,
+      "found": 0
+    },
+    "ENTRETIEN - MAISON": {
+      "total": 1,
+      "found": 0
+    }
+  }
+}

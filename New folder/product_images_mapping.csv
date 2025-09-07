@@ -1,0 +1,6 @@
+product_id,product_name,barcode,category,image_filename,image_url,source_site
+bec412a8-4c4c-41d5-9a2c-846eb351bc95,Apple iPhone 15,123456789012,Electronics,bec412a8-4c4c-41d5-9a2c-846eb351bc95.jpg,https://ci.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/42/646713/1.jpg?8684,jumia_ci
+1fc3fb93-bfca-4455-b2c7-a5face6f74c8,Samsung Galaxy S24,987654321098,Electronics,1fc3fb93-bfca-4455-b2c-a5face6f74c8.jpg,https://ci.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/52/983972/1.jpg?1592,jumia_ci
+1ddec026-5b9c-4547-aae5-b7295295408f,Nike Air Max Shoes,456789123456,Clothing,1ddec026-5b9c-4547-aae5-b7295295408f.jpg,https://ke.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/65/9465523/1.jpg?9727,jumia_kenya
+2e4098f9-c134-4437-86b4-f8412b61e6e1,Coffee Maker Deluxe,789456123789,Home & Garden,2e4098f9-c134-4437-86b4-f8412b61e6e1.jpg,https://ci.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/32/308103/1.jpg?4428,jumia_ci
+309df3f1-c13b-4bad-b01c-83b054243dd5,Protein Powder 2kg,321654987321,Health & Beauty,309df3f1-c13b-4bad-b01c-83b054243dd5.jpg,https://ng.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/83/2581993/1.jpg?0762,jumia_nigeria
